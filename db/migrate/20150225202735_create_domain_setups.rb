@@ -1,7 +1,7 @@
 class CreateDomainSetups < ActiveRecord::Migration
   def change
     create_table :domain_setups do |t|
-      t.text :domain_name
+      t.text :name
       t.text :product_url
       t.integer :last_read_id
 

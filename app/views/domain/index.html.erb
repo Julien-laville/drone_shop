@@ -1,0 +1,9 @@
+<h1>Domains</h1>
+<% for domain in @domains %>
+    <p>
+        <%= domain.name %>
+        <%= link_to 'Crawl', crawl_domain_path( domain ) %>
+        <%= link_to 'See', domain_path( domain ) %>
+    </p>
+
+<% end %>

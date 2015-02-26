@@ -1,0 +1,7 @@
+<% @domain.name %>
+
+<% for xpath in @domain.xpaths %>
+    <%= xpath.path %> ->  <%= xpath.column_name %> ->  <%= xpath.clean_rule %>
+
+
+<% end %>
