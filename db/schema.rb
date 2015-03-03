@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150225205645) do
+ActiveRecord::Schema.define(version: 20150303192627) do
 
   create_table "domain_setups", force: :cascade do |t|
     t.text     "name"
@@ -20,6 +20,12 @@ ActiveRecord::Schema.define(version: 20150225205645) do
     t.integer  "last_read_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+  end
+
+  create_table "product_categories", force: :cascade do |t|
+    t.text     "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "product_comments", force: :cascade do |t|
@@ -34,8 +40,16 @@ ActiveRecord::Schema.define(version: 20150225205645) do
   add_index "product_comments", ["product_id"], name: "index_product_comments_on_product_id"
   add_index "product_comments", ["user_id"], name: "index_product_comments_on_user_id"
 
+  create_table "product_constructors", force: :cascade do |t|
+    t.text     "name"
+    t.text     "website"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.integer  "domain_setup_id"
+    t.integer  "product_constructor_id"
     t.integer  "product_id"
     t.text     "product_name"
     t.text     "ariane"
@@ -44,11 +58,20 @@ ActiveRecord::Schema.define(version: 20150225205645) do
     t.boolean  "isBackOrder"
     t.text     "original_description"
     t.float    "price"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "products", ["domain_setup_id"], name: "index_products_on_domain_setup_id"
+  add_index "products", ["product_constructor_id"], name: "index_products_on_product_constructor_id"
+
+  create_table "products_product_categories", id: false, force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "product_category_id"
+  end
+
+  add_index "products_product_categories", ["product_category_id"], name: "index_products_product_categories_on_product_category_id"
+  add_index "products_product_categories", ["product_id"], name: "index_products_product_categories_on_product_id"
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false

@@ -6,6 +6,15 @@ class DomainController < ApplicationController
     @domains = DomainSetup.all
   end
 
+  def new
+    @domain = DomainSetup.new
+  end
+
+  def create
+    DomainSetup.new(params[:domain_setup].permit([:name, :product_sample_url, :product_url])).save
+    redirect_to controller: domain, action: index
+  end
+
   def crawl
     columns = Product.column_names
 
@@ -35,6 +44,7 @@ class DomainController < ApplicationController
   end
 
   def show
+    @column_names = Product.column_names + ['constructor']
     @rule = Xpath.new
     @domain = DomainSetup.find params[:id]
   end

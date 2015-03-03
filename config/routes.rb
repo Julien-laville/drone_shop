@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
-  get 'home/index'
+
+  get 'admin/index'
+
+  resources :product do
+    member do
+      get 'show'
+      get 'new'
+      get 'edit'
+      post 'update'
+      delete 'remove'
+    end
+    collection do
+      get 'index'
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -18,6 +32,8 @@ Rails.application.routes.draw do
        member do
          get 'crawl'
          get 'show'
+         get 'new'
+         post 'create'
          post 'add_rule'
          get 'test_rule'
          delete 'remove_rule'

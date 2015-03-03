@@ -1,0 +1,12 @@
+<%= form_for @domain, url: {action: 'create'} do |domain| %>
+    <%= domain.label :name %> :
+    <%= domain.text_field :name %><br>
+    <%= domain.label :product_sample_url %> :
+    <%= domain.text_field :product_sample_url %><br>
+    <%= domain.label :product_url %> (%d to count) :
+    <%= domain.text_field :product_url %><br>
+    product_url
+
+
+    <%= submit_tag 'Create domain' %>
+<% end %>

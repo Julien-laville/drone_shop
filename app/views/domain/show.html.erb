@@ -13,9 +13,12 @@
 <div id="test_result"></div>
 
 <%= form_for @rule, url: {action: 'add_rule'} do |rule| %>
-    <%= rule.text_field :path %>
-    <%= rule.text_field :column_name %>
-    <%= rule.text_field :clean_rule %>
+    <%= rule.label :path %> :
+    <%= rule.text_field :path %><br>
+    <%= rule.label :column_name %> :
+    <%= rule.select :column_name, @column_names %><br>
+    <%= rule.label :clean_rule %> :
+    <%= rule.text_field :clean_rule %><br>
     <%= submit_tag 'Create rule' %>
 <% end %>
 
