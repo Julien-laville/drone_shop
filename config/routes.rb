@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'shop/builder'
+
   get 'admin/index'
 
   resources :product do

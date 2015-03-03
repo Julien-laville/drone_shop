@@ -1,0 +1,28 @@
+<table>
+  <tbody>
+    <tr>
+      <td>Ariane</td>
+      <td><%= @product.ariane %></td>
+    </tr>
+    <tr>
+      <td>Created at</td>
+      <td><%= @product.created_at %></td>
+    </tr>
+    <tr>
+      <td>Domain name</td>
+      <td><%= @product.domain_setup.name %></td>
+    </tr>
+    <tr>
+      <td>Company</td>
+      <td><%= @product.product_constructor.name %></td>
+    </tr>
+    <tr>
+      <td>Category</td>
+      <td><%= @product.product_categories.map{|category| category.name}%></td>
+    </tr>
+    <tr>
+      <td>status</td>
+      <td><%= @product.isActive ? 'active' : 'not active' %></td>
+    </tr>
+  </tbody>
+</table>
