@@ -21,14 +21,21 @@ class DomainController < ApplicationController
 
   def add_rule
     domain = DomainSetup.find params[:id]
-    domain.xpaths << Xpath.new(params)
+    domain.xpaths << Xpath.new(params[:xpath].permit([:path, :column_name, :clean_rule]))
+    redirect_to domain_path( domain )
   end
 
   def test_rule
-    Xpath.new params
+    rule = Xpath.find params[:id]
+    @test_result = rule.test.to_s
+  end
+
+  def remove_rule
+    @xpath = Xpath.destroy params[:id]
   end
 
   def show
+    @rule = Xpath.new
     @domain = DomainSetup.find params[:id]
   end
 

@@ -16,9 +16,10 @@ ActiveRecord::Schema.define(version: 20150225205645) do
   create_table "domain_setups", force: :cascade do |t|
     t.text     "name"
     t.text     "product_url"
+    t.text     "product_sample_url"
     t.integer  "last_read_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "product_comments", force: :cascade do |t|
@@ -57,6 +58,7 @@ ActiveRecord::Schema.define(version: 20150225205645) do
   create_table "xpaths", force: :cascade do |t|
     t.integer  "domain_setup_id"
     t.text     "path"
+    t.text     "clean_rule"
     t.string   "column_name"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false

@@ -18,6 +18,9 @@ Rails.application.routes.draw do
        member do
          get 'crawl'
          get 'show'
+         post 'add_rule'
+         get 'test_rule'
+         delete 'remove_rule'
        end
        collection do
          get 'index'

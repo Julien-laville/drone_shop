@@ -3,6 +3,7 @@ class CreateDomainSetups < ActiveRecord::Migration
     create_table :domain_setups do |t|
       t.text :name
       t.text :product_url
+      t.text :product_sample_url
       t.integer :last_read_id
 
       t.timestamps null: false

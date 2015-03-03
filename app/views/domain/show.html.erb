@@ -1,7 +1,21 @@
-<% @domain.name %>
+<%= @domain.name %>
+<%= @domain.product_sample_url %>
 
-<% for xpath in @domain.xpaths %>
-    <%= xpath.path %> ->  <%= xpath.column_name %> ->  <%= xpath.clean_rule %>
+<p>
+  <% for xpath in @domain.xpaths %>
+    <p id="<%= "rule_#{xpath.id}" %>">
+        <%= xpath.path %> ->  <%= xpath.column_name %> ->  <%= xpath.clean_rule %>
+        <%= link_to 'test', test_rule_domain_path(xpath), remote: true %>
+        <%= link_to '⨯', remove_rule_domain_path(xpath), method: :delete, remote: true %>
+    </p>
+  <% end %>
+</p>
+<div id="test_result"></div>
 
-
+<%= form_for @rule, url: {action: 'add_rule'} do |rule| %>
+    <%= rule.text_field :path %>
+    <%= rule.text_field :column_name %>
+    <%= rule.text_field :clean_rule %>
+    <%= submit_tag 'Create rule' %>
 <% end %>
+

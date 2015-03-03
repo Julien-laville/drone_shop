@@ -3,6 +3,7 @@ class CreateXpaths < ActiveRecord::Migration
     create_table :xpaths do |t|
       t.belongs_to :domain_setup, index: true
       t.text :path
+      t.text :clean_rule
 
       t.string :column_name
 
