@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 #### Crawl ####
 #dom parsing
 gem 'nokogiri', '1.6.6.2'
-
+gem 'jquery-ui-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'

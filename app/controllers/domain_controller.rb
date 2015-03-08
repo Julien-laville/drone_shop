@@ -11,8 +11,9 @@ class DomainController < ApplicationController
   end
 
   def create
-    DomainSetup.new(params[:domain_setup].permit([:name, :product_sample_url, :product_url])).save
-    redirect_to controller: domain, action: index
+    domain = DomainSetup.new(params[:domain_setup].permit([:name, :product_sample_url, :product_url]));
+    domain.save
+    redirect_to domain_path( domain )
   end
 
   def crawl

@@ -1,8 +1,27 @@
 Rails.application.routes.draw do
 
+
+
+
+
+
   get 'shop/builder'
 
   get 'admin/index'
+
+  resources :builder do
+    member do
+      get 'new'
+      get 'index'
+      get 'edit'
+      get 'show'
+      post 'create'
+      post 'update'
+    end
+    collection do
+      get 'index'
+    end
+  end
 
   resources :product do
     member do
