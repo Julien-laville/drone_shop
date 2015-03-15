@@ -1,16 +1,24 @@
 <%= @domain.name %>
 <%= @domain.product_sample_url %>
 
+
+  https://chrome.google.com/webstore/detail/xpath-helper/hgimnogjllphhhkhlmebbmlgjoejdpjl?utm_source=chrome-app-launcher-info-dialog ctrl shift x
 <p>
   <% for xpath in @domain.xpaths %>
     <p id="<%= "rule_#{xpath.id}" %>">
-        <%= xpath.path %> ->  <%= xpath.column_name %> ->  <%= xpath.clean_rule %>
-        <%= link_to 'test', test_rule_domain_path(xpath), remote: true %>
-        <%= link_to '⨯', remove_rule_domain_path(xpath), method: :delete, remote: true %>
+      <%= form_for xpath, url: test_rule_domain_path(xpath), :method => :post, :remote => true do |path_test| %>
+          <%= path_test.text_field :path %>
+          <%= path_test.text_field :column_name %>
+          <%= path_test.text_field :clean_rule %>
+
+            <%= submit_tag "Test & save" %>
+      <% end %>
+      <%= link_to '⨯', remove_rule_domain_path(xpath), method: :delete, remote: true %>
     </p>
-  <% end %>
+<% end %>
 </p>
-<div id="test_result"></div>
+<div id="xpath value"></div>
+<div id="final_value"></div>
 
 <%= form_for @rule, url: {action: 'add_rule'} do |rule| %>
     <%= rule.label :path %> :

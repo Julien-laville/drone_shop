@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303192627) do
+ActiveRecord::Schema.define(version: 20150308145810) do
 
   create_table "domain_setups", force: :cascade do |t|
     t.text     "name"
@@ -21,6 +21,23 @@ ActiveRecord::Schema.define(version: 20150303192627) do
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
+
+  create_table "model_builds", force: :cascade do |t|
+    t.text     "name"
+    t.float    "mark"
+    t.float    "advancement"
+    t.string   "category"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "model_builds_products", id: false, force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "model_builds_id"
+  end
+
+  add_index "model_builds_products", ["model_builds_id"], name: "index_model_builds_products_on_model_builds_id"
+  add_index "model_builds_products", ["product_id"], name: "index_model_builds_products_on_product_id"
 
   create_table "product_categories", force: :cascade do |t|
     t.text     "name"

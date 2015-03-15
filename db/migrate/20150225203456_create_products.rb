@@ -9,6 +9,7 @@ class CreateProducts < ActiveRecord::Migration
       t.integer :product_id
       t.text :product_name
       t.text :ariane
+      t.text :pictures
 
       t.boolean :isActive
       t.boolean :isAvailable

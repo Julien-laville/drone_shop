@@ -24,6 +24,7 @@ class DomainController < ApplicationController
     for product_number in Array(domain.last_read_id..100000)
       product_url = domain.name + domain.product_url.gsub( '%d', 54824.to_s )
       will_save_product = get_product product_url, domain
+      will_save_product.product_id = product_number
       domain.products << will_save_product
     end
 
@@ -36,7 +37,7 @@ class DomainController < ApplicationController
   end
 
   def test_rule
-    rule = Xpath.find params[:id]
+    rule = Xpath.update( params[:id], params[:xpath].permit([:path, :column_name, :clean_rule]));
     @test_result = rule.test.to_s
   end
 
@@ -60,7 +61,7 @@ class DomainController < ApplicationController
       path = xpath.path
 
 
-      value = page.css( path )
+      value = page.xpath( path )
 
       will_save_product.send "#{column_name}=", value.to_s
 

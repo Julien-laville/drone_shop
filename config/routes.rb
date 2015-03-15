@@ -56,7 +56,7 @@ Rails.application.routes.draw do
          get 'new'
          post 'create'
          post 'add_rule'
-         get 'test_rule'
+         post 'test_rule'
          delete 'remove_rule'
        end
        collection do
